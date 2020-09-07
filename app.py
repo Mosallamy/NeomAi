@@ -14,7 +14,7 @@ def date(dateInSecodns):
 @app.route("/")
 def train():
     predictions = list()
-    with open("/Users/Mosallamy/Desktop/Development/neom/data/Predections.csv", "r") as file:
+    with open("Predections.csv", "r") as file:
         reader = csv.DictReader(file)
         predictions = list(reader)
 
