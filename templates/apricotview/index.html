@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Apricot v 1.3</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Le styles -->
+
+
+
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core.js"
+    type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-core-legacy.js"
+    type="text/javascript" charset="utf-8"></script>
+    <script src="https://js.api.here.com/v3/3.1/mapsjs-service.js"
+    type="text/javascript" charset="utf-8"></script>
+
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+    
+
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/loader-style.css">
+    <link rel="stylesheet" href="static/css/bootstrap.css">
+
+    <link rel="stylesheet" type="text/css" href="static/js/progress-bar/number-pb.css">
+
+
+
+    <style type="text/css">
+    canvas#canvas4 {
+        position: relative;
+        top: 20px;
+    }
+    </style>
+
+
+        <style>
+            #customers 
+            {
+              font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+              border-collapse: collapse;
+              width: 100%;
+            }
+
+            #customers td, #customers th 
+            {
+              border: 1px solid #ddd;
+              padding: 8px;
+            }
+
+            #customers tr:nth-child(even)
+            {
+                background-color: #f2f2f2;
+            }
+
+            #customers tr:hover 
+            {
+                background-color: #ddd;
+            }
+
+            #customers th 
+            {
+              padding-top: 12px;
+              padding-bottom: 12px;
+              text-align: left;
+              background-color: #4CAF50;
+              color: white;
+            }
+        
+        </style>
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    <!-- Fav and touch icons -->
+    <link rel="shortcut icon" href="static/ico/minus.png">
+</head>
+
+<body>
+    <!-- Preloader -->
+    <div id="preloader">
+        <div id="status">&nbsp;</div>
+    </div>
+    <!-- TOP NAVBAR -->
+    <nav role="navigation" class="navbar navbar-static-top">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button data-target="#bs-example-navbar-collapse-1" data-toggle="collapse" class="navbar-toggle" type="button">
+                    <span class="entypo-menu"></span>
+                </button>
+                <button class="navbar-toggle toggle-menu-mobile toggle-left" type="button">
+                    <span class="entypo-list-add"></span>
+                </button>
+
+
+
+
+                <div id="logo-mobile" class="visible-xs">
+                    <h1>REHLA
+                    </h1>
+                </div>
+
+            </div>
+
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div id="bs-example-navbar-collapse-1" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+
+                    <li class="dropdown">
+
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:20px;" class="icon-conversation"></i><div class="noft-red">5</div></a>
+
+
+                        <ul style="margin: 11px 0 0 9px;" role="menu" class="dropdown-menu dropdown-wrap">
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle" src="http://api.randomuser.me/portraits/thumb/men/1.jpg">Vehicle 212 <b>Just Now</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle" src="http://api.randomuser.me/portraits/thumb/women/1.jpg">Vehicle 331 <b>3 Min Ago</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <img alt="" class="img-msg img-circle" src="http://api.randomuser.me/portraits/thumb/men/2.jpg">Vehicle 87 <b>2 Hours Ago</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div>See All Messege</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#"><i style="font-size:19px;" class="icon-warning tooltitle"></i><div class="noft-green">5</div></a>
+                        <ul style="margin: 12px 0 0 0;" role="menu" class="dropdown-menu dropdown-wrap">
+                            <li>
+                                <a href="#">
+                                    <span style="background:#DF2135" class="noft-icon maki-bus"></span><i>From Station</i>  <b>01B</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <span style="background:#AB6DB0" class="noft-icon maki-ferry"></span><i>Departing at</i>  <b>9:00 AM</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <span style="background:#FFA200" class="noft-icon maki-aboveground-rail"></span><i>Delay for</i>  <b>09 Min</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <span style="background:#86C440" class="noft-icon maki-airport"></span><i>Take of</i>  <b>08:30 AM</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <span style="background:#0DB8DF" class="noft-icon maki-bicycle"></span><i>Take of</i>  <b>08:30 AM</b>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <div>See All Notification</div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li><a href="#"><i data-toggle="tooltip" data-placement="bottom" title="Help" style="font-size:20px;" class="icon-help tooltitle"></i></a>
+                    </li>
+
+                </ul>
+                <div id="nt-title-container" class="navbar-left running-text ">
+                    <ul class="date-top">
+                        <li class="entypo-calendar" style="margin-right:5px"></li>
+                        <li id="Date"></li>
+
+
+                    </ul>
+
+                    <ul id="digital-clock" class="digital">
+                        <li class="entypo-clock" style="margin-right:5px"></li>
+                        <li class="hour"></li>
+                        <li>:</li>
+                        <li class="min"></li>
+                        <li>:</li>
+                        <li class="sec"></li>
+                        <li class="meridiem"></li>
+                    </ul>
+                </div>
+
+                <ul style="margin-right:0;" class="nav navbar-nav navbar-right">
+                    <li>
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <img alt="" class="admin-pic img-circle" src="http://api.randomuser.me/portraits/thumb/men/10.jpg">Hi, Abdullah <b class="caret"></b>
+                        </a>
+                        <ul style="margin-top:14px;" role="menu" class="dropdown-setting dropdown-menu">
+                            <li>
+                                <a href="#">
+                                    <span class="entypo-user"></span>&#160;&#160;My Profile</a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="entypo-vcard"></span>&#160;&#160;Account Setting</a>
+                            </li>
+                            <li>
+                                <a href="#">
+                                    <span class="entypo-lifebuoy"></span>&#160;&#160;Help</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="#">
+                                    <span class="entypo-logout"></span>&#160;&#160;Logout</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="hidden-xs">
+                        <a class="toggle-left" href="#">
+                            <span style="font-size:20px;" class="entypo-list-add"></span>
+                        </a>
+                    </li>
+                </ul>
+
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- /END OF TOP NAVBAR -->
+
+    <!-- SIDE MENU -->
+    <div id="skin-select">
+        <div id="logo">
+            <img src="static/img/rehla-logo.png" style="width: 50%; margin-left: 25%;">
+        </div>
+
+        <a id="toggle">
+            <span class="entypo-menu"></span>
+        </a>
+        <div class="dark">
+            <form action="#">
+                <span>
+                    <input type="text" name="search" value="" class="search rounded id_search" placeholder="Search Menu..." autofocus />
+                </span>
+            </form>
+        </div>
+
+        <div class="search-hover">
+            <form id="demo-2">
+                <input type="search" placeholder="Search Menu..." class="id_search">
+            </form>
+        </div>
+
+
+
+
+        <div class="skin-part">
+            <div id="tree-wrap">
+                <div class="side-bar">
+                    
+
+                  
+
+                    <div class="side-dash">
+                        <h3>
+                            <span>Device</span>
+                        </h3>
+                        <ul class="side-dashh-list">
+                            <li>Avg. Traffic
+                                <span>25k<i style="color:#44BBC1;" class="fa fa-arrow-circle-up"></i>
+                                </span>
+                            </li>
+                            <li>Visitors
+                                <span>80%<i style="color:#AB6DB0;" class="fa fa-arrow-circle-down"></i>
+                                </span>
+                            </li>
+                            <li>Convertion Rate
+                                <span>13m<i style="color:#19A1F9;" class="fa fa-arrow-circle-up"></i>
+                                </span>
+                            </li>
+                        </ul>
+                        <h3>
+                            <span>Traffic</span>
+                        </h3>
+                        <ul class="side-bar-list">
+                            <li>Avg. Traffic
+                                <div class="linebar">5,7,8,9,3,5,3,8,5</div>
+                            </li>
+                            <li>Visitors
+                                <div class="linebar2">9,7,8,9,5,9,6,8,7</div>
+                            </li>
+                            <li>Convertion Rate
+                                <div class="linebar3">5,7,8,9,3,5,3,8,5</div>
+                            </li>
+                        </ul>
+                        <h3>
+                            <span>Visitors</span>
+                        </h3>
+                        <div id="g1" style="height:180px" class="gauge"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END OF SIDE MENU -->
+
+
+
+    <!--  PAPER WRAP -->
+    <div class="wrap-fluid">
+        <div class="container-fluid paper-wrap bevel tlbr">
+
+
+
+
+
+            <!-- CONTENT -->
+            <!--TITLE -->
+            <div class="row ">
+                <div id="paper-top">
+                    <div class="col-sm-3">
+                        <h2 class="tittle-content-header">
+                            <i class="icon-window"></i> 
+                            <span>REHLA 
+                            </span>
+                        </h2>
+
+                    </div>
+
+                    
+                    <div class="col-sm-2">
+                        <div class="devider-vertical visible-lg"></div>
+                        <div class="btn-group btn-wigdet pull-right visible-lg">
+                            <div class="btn">
+                                Widget</div>
+                            <button data-toggle="dropdown" class="btn dropdown-toggle" type="button">
+                                <span class="caret"></span>
+                                <span class="sr-only">Toggle Dropdown</span>
+                            </button>
+                            <ul role="menu" class="dropdown-menu">
+                                <li>
+                                    <a href="#">
+                                        <span class="entypo-plus-circled margin-iconic"></span>Add New</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="entypo-heart margin-iconic"></span>Favorite</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <span class="entypo-cog margin-iconic"></span>Setting</a>
+                                </li>
+                            </ul>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <!--/ TITLE -->
+
+
+            <!-- END OF BREADCRUMB -->
+
+
+
+
+
+            <div class="row content-wrap ">
+                <div class="col-md-4 col-lg-4 col-sm-4">
+                <!--  DEVICE MANAGER -->
+                    <div><h1></h1></div>
+                    <div class="mt-2">
+                        
+                            <div class="row">
+                                <div class="profit" id="profitClose">
+                                    <div class="headline">
+                                        <h3>
+                                            <span style="font-size: 10px;">
+                                                <i class="entypo-clock"></i>&#160;&#160;Comulative Delay Time</span>
+                                        </h3>
+
+                                    </div>
+                                    <div class="value">
+
+                                        <div style="font-size: 10px;" id="getting-started">
+                                            <span>%M</span>
+                                            <span>%S</span>
+                                        </div>
+
+
+                                    </div>
+
+                                    <div class="progress-tinny">
+                                        <div style="width: 50%" class="bar"></div>
+                                    </div>
+                                    <div class="profit-line">
+                                        <i class="fa fa-caret-up fa-lg"></i>&#160;&#160; 50% &#160;From Last Hour</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="revenue" id="revenueClose">
+                                    <div class="headline ">
+
+                                        <h3>
+                                            <span>
+                                                <i class="maki-aboveground-rail"></i>&#160;&#160;Train Speed</span>
+                                        </h3>
+
+                                        
+                                    </div>
+                                    <div class="value">
+                                        <span class="pull-left"><i class="entypo-gauge gauge-position"></i>
+                                        </span>
+                                        <canvas id="canvas4" width="70" height="70"></canvas>
+                                        <i class="pull-right">/Km</i>
+
+                                    </div>
+
+
+
+
+
+
+
+
+                                    <div class="progress-tinny">
+                                        <div style="width: 25%" class="bar"></div>
+                                    </div>
+                                    <div class="profit-line">
+                                        <i class="fa fa-caret-down fa-lg"></i>&#160;&#160;Rate : 20 km/Hour</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="order" id="orderClose">
+                                    <div class="headline ">
+                                        <h3>
+                                            <span>
+                                                <i class="maki-airport"></i>&#160;&#160;AIR PORT TRAFFIC</span>
+                                        </h3>
+                                        
+                                    </div>
+                                    <div class="value">
+                                        <span><i class="fa fa-plane fa-2x"></i>
+                                        </span><b id="speed"></b><b>Take Off</b>
+
+                                    </div>
+
+                                    <div class="progress-tinny">
+                                        <div style="width: 10%" class="bar"></div>
+                                    </div>
+                                    <div class="profit-line">
+                                        <i class="fa fa-caret-down fa-lg"></i>&#160;&#160;Rate : 20 Plane/Hour</div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class=" member" id="memberClose">
+                                    <div class="headline ">
+                                        <h3>
+                                            <span>
+                                                <i class="fa fa-truck"></i>
+                                                &#160;&#160;CARGO
+                                            </span>
+                                        </h3>
+                                    </div>
+                                    <div class="value">
+                                        <span><i class="maki-warehouse"></i>
+                                        </span>45<b>Sent</b>
+
+                                    </div>
+                                    <div class="progress-tinny">
+                                        <div style="width: 50%" class="bar"></div>
+                                    </div>
+                                    <div class="profit-line">
+                                        <span class="entypo-down-circled"></span>&#160;50% From Last Month</div>
+                                </div>
+                          
+                        </div>
+                        <div class="row">
+                                <div class=" member" id="memberClose">
+                                    <div class="headline ">
+                                        <h3>
+                                            <span>
+                                                <i class="fa fa-truck"></i>
+                                                &#160;&#160;CARGO
+                                            </span>
+                                        </h3>
+                                    </div>
+                                    <div class="value">
+                                        <span><i class="maki-warehouse"></i>
+                                        </span>45<b>Sent</b>
+
+                                    </div>
+                                    <div class="progress-tinny">
+                                        <div style="width: 50%" class="bar"></div>
+                                    </div>
+                                    <div class="profit-line">
+                                        <span class="entypo-down-circled"></span>&#160;50% From Last Month</div>
+                                </div>
+                          
+                        </div>
+                        <div class="row">
+                                <div class=" member" id="memberClose">
+                                    <div class="headline ">
+                                        <h3>
+                                            <span>
+                                                <i class="fa fa-truck"></i>
+                                                &#160;&#160;CARGO
+                                            </span>
+                                        </h3>
+                                    </div>
+                                    <div class="value">
+                                        <span><i class="maki-warehouse"></i>
+                                        </span>45<b>Sent</b>
+
+                                    </div>
+                                    <div class="progress-tinny">
+                                        <div style="width: 50%" class="bar"></div>
+                                    </div>
+                                    <div class="profit-line">
+                                        <span class="entypo-down-circled"></span>&#160;50% From Last Month</div>
+                                </div>
+                          
+                        </div>
+                    </div>
+                    <!--  / DEVICE MANAGER -->
+                        
+                </div>
+                <div class="col-md-1 col-lg-1 col-sm-1"></div>
+                <div class="col-md-7 col-lg-7 col-sm-7 ">
+                    <div><h1></h1></div>
+                <div class="row">
+                        <div id='map' style='width: 100%; height: 500px;'></div>
+                </div>
+                    <div class="row"><h1></h1></div>
+                <div class="row">
+                    <table id="customers" cellpadding="10" cellspacing="1">
+                                    <tr>
+                                      <th> Vehicle ID </th>
+                                      <th>Speed km/h</th>
+                                      <th>Passengers</th>
+                                      <th>Available Seats</th>
+                                  
+                                    </tr>
+                                    <tr>
+                                        <td contentEditable="true" data-id="Vehicle_ID"></td>
+                                        <td contentEditable="true" data-id="Vehicle_Speed"></td>
+                                        <td contentEditable="true" data-id="Vehicle_Passengers"></td>
+                                        <td contentEditable="true" data-id="Vehicle_Available_Seats" style="text-align:right;"></td>
+                                    </tr>
+                                    <tr>
+                                      <td>W-3001</td>
+                                      <td>70</td>
+                                      <td>65</td>
+                                      <td>35</td>
+                                  
+                                  
+                                    </tr>
+                                    <tr>
+                                      <td>X-6040</td>
+                                          <td>62</td>
+                                  
+                                      <td>98</td>
+                                      <td>2</td>
+                                    </tr>
+                                    <tr>
+                                      <td>H-3470 </td>
+                                          <td>79</td>
+                                  
+                                      <td>78</td>
+                                      <td>22</td>
+                                    </tr>
+                                    <tr>
+                                      <td>T-1203</td>
+                                          <td>0</td>
+                                  
+                                      <td>0</td>
+                                      <td>100</td>
+                                    </tr>
+                                    <tr>
+                                      <td>E-7002</td>
+                                          <td>70</td>
+                                  
+                                      <td>48</td>
+                                      <td>52</td>
+                                    </tr>
+                                    <tr>
+                                      <td>F-4022</td>
+                                          <td>76</td>
+                                  
+                                      <td>89</td>
+                                      <td>11</td>
+                                    </tr>
+                                    <tr>
+                                      <td>K-3490</td>
+                                          <td>60</td>
+                                  
+                                      <td>70</td>
+                                      <td>30</td>
+                                    </tr>
+                                    <tr>
+                                      <td>M-7802</td>
+                                          <td>69</td>
+                                      <td>78</td>
+                                      <td>22</td>
+                                    </tr>
+                                    <tr>
+                                      <td>G-5253</td>
+                                  
+                                          <td>66</td>
+                                  
+                                      <td>95</td>
+                                      <td>5</td>
+                                    </tr>
+                                    <tr>
+                                      <td>P-1881</td>
+                                          <td>73</td>
+                                  
+                                      <td>81 </td>
+                                      <td>19</td>
+                                    </tr>
+                                  </table>
+                </div>
+                </div>
+            </div>
+            
+            
+
+            
+
+
+
+
+
+
+
+
+            <div class="content-wrap">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="chart-wrap">
+                            <div class="chart-dash">
+                                <!-- <div id="sparkline"></div> -->
+                                <div id="placeholder" style="width:100%;height:200px;"></div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-8">
+                                    <div class="speed">
+                                        <h2>Speed Avarage</h2>
+                                        <h1>74
+                                            <span>Km / hours</span>
+                                        </h1>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="traffic">
+                                        <h2>Traffic per day</h2>
+                                        <h1>2.5874</h1>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-4">
+                                    <div class="traffic-rates">
+                                        <h4>Traffic Rates</h4>
+                                        <h1>30 %
+                                            <span>-1,3 %</span>
+                                        </h1>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="traffic-rates">
+                                        <h4>Traffic Rates</h4>
+                                        <h1>30 %
+                                            <span>-1,3 %</span>
+                                        </h1>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
+                                    <div class="traffic-rates">
+                                        <h4>Traffic Rates</h4>
+                                        <h1>30 %
+                                            <span>-1,3 %</span>
+                                        </h1>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <!-- /END OF CONTENT -->
+
+
+
+                <!-- FOOTER -->
+                <div class="footer-space"></div>
+                <div id="footer">
+                    <div class="devider-footer-left"></div>
+                    <div class="time">
+                        <p id="spanDate"></p>
+                        <p id="clock"></p>
+                    </div>
+                    <div class="copyright">Make with Love
+                        <span class="entypo-heart"></span>2014 <a href="http://gamatechno.com">Thesmile</a> All Rights Reserved</div>
+                    <div class="devider-footer"></div>
+
+
+                </div>
+                <!-- / END OF FOOTER -->
+
+
+            </div>
+        </div>
+    </div>
+    <!--  END OF PAPER WRAP -->
+
+    <!-- RIGHT SLIDER CONTENT -->
+    <div class="sb-slidebar sb-right">
+        <div class="right-wrapper">
+            <div class="row">
+                <h3>
+                    <span><i class="entypo-gauge"></i>&nbsp;&nbsp;MAIN WIDGET</span>
+                </h3>
+                <div class="col-sm-12">
+
+                    <div class="widget-knob">
+                        <span class="chart" style="position:relative" data-percent="86">
+                            <span class="percent"></span>
+                        </span>
+                    </div>
+                    <div class="widget-def">
+                        <b>Distance traveled</b>
+                        <br>
+                        <i>86% to the check point</i>
+                    </div>
+
+                    <div class="widget-knob">
+                        <span class="speed-car" style="position:relative" data-percent="60">
+                            <span class="percent2"></span>
+                        </span>
+                    </div>
+                    <div class="widget-def">
+                        <b>The average speed</b>
+                        <br>
+                        <i>30KM/h avarage speed</i>
+                    </div>
+
+
+                    <div class="widget-knob">
+                        <span class="overall" style="position:relative" data-percent="25">
+                            <span class="percent3"></span>
+                        </span>
+                    </div>
+                    <div class="widget-def">
+                        <b>Overall result</b>
+                        <br>
+                        <i>30KM/h avarage Result</i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="margin-top:0;" class="right-wrapper">
+            <div class="row">
+                <h3>
+                    <span><i class="entypo-chat"></i>&nbsp;&nbsp;CHAT</span>
+                </h3>
+                <div class="col-sm-12">
+                    <span class="label label-warning label-chat">Online</span>
+                    <ul class="chat">
+                        <li>
+                            <a href="#">
+                                <span>
+                                    <img alt="" class="img-chat img-circle" src="http://api.randomuser.me/portraits/thumb/men/20.jpg">
+                                </span><b>Dave Junior</b>
+                                <br><i>Last seen : 08:00 PM</i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>
+                                    <img alt="" class="img-chat img-circle" src="http://api.randomuser.me/portraits/thumb/men/21.jpg">
+                                </span><b>Kenneth Lucas</b>
+                                <br><i>Last seen : 07:21 PM</i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>
+                                    <img alt="" class="img-chat img-circle" src="http://api.randomuser.me/portraits/thumb/men/22.jpg">
+                                </span><b>Heidi Perez</b>
+                                <br><i>Last seen : 05:43 PM</i>
+                            </a>
+                        </li>
+
+
+                    </ul>
+
+                    <span class="label label-chat">Offline</span>
+                    <ul class="chat">
+                        <li>
+                            <a href="#">
+                                <span>
+                                    <img alt="" class="img-chat img-offline img-circle" src="http://api.randomuser.me/portraits/thumb/men/23.jpg">
+                                </span><b>Dave Junior</b>
+                                <br><i>Last seen : 08:00 PM</i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>
+                                    <img alt="" class="img-chat img-offline img-circle" src="http://api.randomuser.me/portraits/thumb/women/24.jpg">
+                                </span><b>Kenneth Lucas</b>
+                                <br><i>Last seen : 07:21 PM</i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>
+                                    <img alt="" class="img-chat img-offline img-circle" src="http://api.randomuser.me/portraits/thumb/men/25.jpg">
+                                </span><b>Heidi Perez</b>
+                                <br><i>Last seen : 05:43 PM</i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>
+                                    <img alt="" class="img-chat img-offline img-circle" src="http://api.randomuser.me/portraits/thumb/women/25.jpg">
+                                </span><b>Kenneth Lucas</b>
+                                <br><i>Last seen : 07:21 PM</i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span>
+                                    <img alt="" class="img-chat img-offline img-circle" src="http://api.randomuser.me/portraits/thumb/men/26.jpg">
+                                </span><b>Heidi Perez</b>
+                                <br><i>Last seen : 05:43 PM</i>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- END OF RIGHT SLIDER CONTENT-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.js"></script>
+    <script src="static/js/progress-bar/src/jquery.velocity.min.js"></script>
+    <script src="static/js/progress-bar/number-pb.js"></script>
+    <script src="static/js/progress-bar/progress-app.js"></script>
+
+
+
+    <!-- MAIN EFFECT -->
+    <script type="text/javascript" src="static/js/preloader.js"></script>
+    <script type="text/javascript" src="static/js/bootstrap.js"></script>
+    <script type="text/javascript" src="static/js/app.js"></script>
+    <script type="text/javascript" src="static/js/load.js"></script>
+    <script type="text/javascript" src="static/js/main.js"></script>
+
+
+
+
+    <!-- GAGE -->
+
+
+    <script type="text/javascript" src="static/js/chart/jquery.flot.js"></script>
+    <script type="text/javascript" src="static/js/chart/jquery.flot.resize.js"></script>
+    <script type="text/javascript" src="static/js/chart/realTime.js"></script>
+    <script type="text/javascript" src="static/js/speed/canvasgauge-coustom.js"></script>
+    <script type="text/javascript" src="static/js/countdown/jquery.countdown.js"></script>
+
+
+
+    <script src="static/js/jhere-custom.js"></script>
+
+    <script>
+    var gauge4 = new Gauge("canvas4", {
+        'mode': 'needle',
+        'range': {
+            'min': 0,
+            'max': 90
+        }
+    });
+    gauge4.draw(Math.floor(Math.random() * 90));
+    var run = setInterval(function() {
+        gauge4.draw(Math.floor(Math.random() * 90));
+    }, 3500);
+    </script>
+
+
+    <script type="text/javascript">
+    /* Javascript
+     *
+     * See http://jhere.net/docs.html for full documentation
+     */
+    $(window).on('load', function() {
+        $('#mapContainer').jHERE({
+            center: [52.500556, 13.398889],
+            type: 'smart',
+            zoom: 10
+        }).jHERE('marker', [52.500556, 13.338889], {
+            icon: 'static/img/marker.png',
+            anchor: {
+                x: 12,
+                y: 32
+            },
+            click: function() {
+                alert('Hallo from Berlin!');
+            }
+        })
+            .jHERE('route', [52.711, 13.011], [52.514, 13.453], {
+                color: '#FFA200',
+                marker: {
+                    fill: '#86c440',
+                    text: '#'
+                }
+            });
+    });
+    </script>
+    <script type="text/javascript">
+    var output, started, duration, desired;
+
+    // Constants
+    duration = 5000;
+    desired = '50';
+
+    // Initial setup
+    output = $('#speed');
+    started = new Date().getTime();
+
+    // Animate!
+    animationTimer = setInterval(function() {
+        // If the value is what we want, stop animating
+        // or if the duration has been exceeded, stop animating
+        if (output.text().trim() === desired || new Date().getTime() - started > duration) {
+            console.log('animating');
+            // Generate a random string to use for the next animation step
+            output.text('' + Math.floor(Math.random() * 60)
+
+            );
+
+        } else {
+            console.log('animating');
+            // Generate a random string to use for the next animation step
+            output.text('' + Math.floor(Math.random() * 120)
+
+            );
+        }
+    }, 5000);
+    </script>
+    <script type="text/javascript">
+    $('#getting-started').countdown('2015/01/01', function(event) {
+        $(this).html(event.strftime(
+
+            '<span>%M</span>' + '<span class="start-min">:</span>' + '<span class="start-min">%S</span>'));
+    });
+    </script>
+     <script>
+            var i = 1;
+            window.setInterval(this.moveBlock,5000);
+            setInterval(updateCarLocation,1000);
+    mapboxgl.accessToken = 'pk.eyJ1IjoibXpxbyIsImEiOiJja2UyNnBkNjEwNmNkMnJtc3Y4Zzl1MGY3In0.pUh0wxe593CZ8l6OQwLK5Q';
+    
+      var geojson = {
+                    'type': 'FeatureCollection',
+                    'features': [
+                    {
+                    'type': 'Feature',
+                    'properties': {
+                    'message': 'Foo',
+                    'iconSize': [30, 30]
+                    },
+                    'geometry': {
+                    'type': 'Point',
+                    'coordinates': [49.57610303654326, 25.333571126139788]
+                    }
+                    },
+                    {
+                    'type': 'Feature',
+                    'properties': {
+                    'message': 'Bar',
+                    'iconSize': [30, 30]
+                    },
+                    'geometry': {
+                    'type': 'Point',
+                    'coordinates': [49.5738288043962976, 25.324761681772102]
+                    }
+                    },
+                    {
+                    'type': 'Feature',
+                    'properties': {
+                    'message': 'Baz',
+                    'iconSize': [30, 30]
+                    },
+                    'geometry': {
+                    'type': 'Point',
+                    'coordinates': [49.58679285460073, 25.326663964084887]
+                    }
+                    },
+                    {
+                    'type': 'Feature',
+                    'properties': {
+                    'message': 'Baz',
+                    'iconSize': [30, 30]
+                    },
+                    'geometry': {
+                    'type': 'Point',
+                    'coordinates': [49.58406522113182, 25.344055854914274]
+                    }
+                    },
+                    {
+                    'type': 'Feature',
+                    'properties': {
+                    'message': 'Baz',
+                    'iconSize': [30, 30]
+                    },
+                    'geometry': {
+                    'type': 'Point',
+                    'coordinates': [49.565762692715225, 25.34239984666368]
+                    }
+                    },
+                    {
+                    'type': 'Feature',
+                    'properties': {
+                    'message': 'Baz',
+                    'iconSize': [30, 30]
+                    },
+                    'geometry': {
+                    'type': 'Point',
+                    'coordinates': [49.600795271366906, 25.334646631032655]
+                    }
+                    },
+                    {
+                    'type': 'Feature',
+                    'properties': {
+                    'message': 'Baz',
+                    'iconSize': [30, 30]
+                    },
+                    'geometry': {
+                    'type': 'Point',
+                    'coordinates': [49.599004813128204, 25.321368413367466]
+                    }
+                    }
+                    ]
+                    };      
+            //showing car location
+            
+           
+        var map = new mapboxgl.Map(
+        {
+            
+            container: 'map',
+            style: 'mapbox://styles/mapbox/outdoors-v11',
+            center: [49.57852246324569,25.334528411991357],
+            zoom: 13,
+            pitch: 90,
+            antialias: true
+        }
+    );
+    
+            // add markers to map
+        geojson.features.forEach(function(marker) {
+            // create a DOM element for the marker
+            var el = document.createElement('div');
+            el.className = 'marker';
+            el.style.backgroundImage =
+            'url(static/img/station.png)';
+            el.style.width = marker.properties.iconSize[0] + 'px';
+            el.style.height = marker.properties.iconSize[1] + 'px';
+            el.style.backgroundSize = '70%';
+            el.style.backgroundRepeat = 'no-repeat';
+            el.addEventListener('click', function() {
+            window.alert(marker.properties.message);
+            });
+
+            // add marker to map
+            new mapboxgl.Marker(el)
+            .setLngLat(marker.geometry.coordinates)
+            .addTo(map);
+            });
+            
+            this.updateCarLocation();
+    function updateCarLocation(){
+      
+        
+         var geojsonVehicls = {
+                    'type': 'FeatureCollection',
+                    'features': [
+                    {
+                    'type': 'Feature',
+                    'properties': {
+                    'message': 'Foo',
+                    'iconSize': [70, 70]
+                    },
+                    'geometry': {
+                    'type': 'Point',
+                    'coordinates': [49.57964999064575, 25.330388384255826]
+                    }
+                    },
+                    {
+                    'type': 'Feature',
+                    'properties': {
+                    'message': 'Bar',
+                    'iconSize': [70, 70]
+                    },
+                    'geometry': {
+                    'type': 'Point',
+                    'coordinates': [49.58969649064575, 25.338433206269443]
+                    }
+                    },
+                    {
+                    'type': 'Feature',
+                    'properties': {
+                    'message': 'Baz',
+                    'iconSize': [70, 70]
+                    },
+                    'geometry': {
+                    'type': 'Point',
+                    'coordinates': [49.56317108054168, 25.33781115173325]
+                    }
+                    },
+                    {
+                    'type': 'Feature',
+                    'properties': {
+                    'message': 'Baz',
+                    'iconSize': [70, 70]
+                    },
+                    'geometry': {
+                    'type': 'Point',
+                    'coordinates': [49.59698637413612, 25.33038170668715]
+                    }
+                    }
+                    ]
+                    };
+            
+        
+                geojsonVehicls.features.forEach(function(marker) {
+            // create a DOM element for the marker
+            var el = document.createElement('div');
+            el.className = 'marker';
+            el.style.backgroundImage =
+            'url(static/img/car.png)';
+            el.style.translate = 'translateY(100px)';
+            el.style.width = marker.properties.iconSize[0] + 'px';
+            el.style.height = marker.properties.iconSize[1] + 'px';
+            el.style.backgroundSize = '70%';
+            el.style.backgroundRepeat = 'no-repeat';
+            
+            el.addEventListener('mouseover', function() {
+            window.alert(marker.properties.message);
+            });
+
+            // add marker to map
+            new mapboxgl.Marker(el)
+            .setLngLat(marker.geometry.coordinates)
+            .addTo(map);
+            });
+            }
+        
+    
+ 
+map.on('mousemove', function(e) {
+    document.getElementById('info').innerHTML =
+    // e.point is the x, y coordinates of the mousemove event relative
+    // to the top-left corner of the map
+    JSON.stringify(e.point) +
+    '<br />' +
+    // e.lngLat is the longitude, latitude geographical position of the event
+    JSON.stringify(e.lngLat.wrap());
+    });
+            this.moveBlock();
+</script>
+
+<script>
+/* Note: This is to add to the table from the file AJAX
+$(document).ready(function () { 
+    var vehicles = {};  
+    employee.Vehicle_ID   = $('#Vehicle_ID').val();  
+    employee.Speed  = $('#Vehicle_Speed').val();  
+    employee.Passengers  = $('#Vehicle_Passengers').val();  
+    employee.Available_Seats  = $('#Vehicle_Available_Seats').val();   
+  
+    function getAllEmployees() {  
+        $.ajax({  
+            url: 'EmployeeService.asmx/GetAllEmployees',  
+            dataType: "json",  
+            method: 'GET',  
+            success: function (data) {  
+                var employeeTable = $('#customers tbody');  
+                employeeTable.empty();  
+  
+                $(data).each(function (index, emp) {  
+                    employeeTable.append('<tr><td>' + emp.Vehicle_ID + '</td><td>'  
+                        + emp.Speed + '</td><td>' + emp.Passengers + '</td><td>'  
+                        + emp.Available_Seats + '</td></tr>');  
+                });  
+            },  
+            error: function (err) {  
+                console.log(err);  
+            }  
+        });  
+    }  
+});  
+*/  
+    $("table tr").hide();
+$("table tr").each(function(index){
+	$(this).delay(index*500).show(1000);
+});
+</script>
+
+
+</body>
+
+</html>
